@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI GitOps Agent — Live Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-icon">🤖</span>
+        <div>
+          <div class="brand-title">AI GitOps Agent</div>
+          <div class="brand-sub">Autonomous Infrastructure Fixes</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div id="ws-status" class="ws-badge ws-connecting">
+          <span class="ws-dot"></span> Connecting...
+        </div>
+        <!-- Hidden for production demo -->
+        <button id="demo-btn" class="btn btn-primary" style="display:none;" onclick="triggerDemo()">▶ Run Demo</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div id="stat-files" class="stat-value">0</div>
+        <div class="stat-label">Files Analyzed</div>
+      </div>
+      <div class="stat-card">
+        <div id="stat-issues" class="stat-value text-yellow">0</div>
+        <div class="stat-label">Issues Found</div>
+      </div>
+      <div class="stat-card">
+        <div id="stat-fixes" class="stat-value text-green">0</div>
+        <div class="stat-label">Fixes Generated</div>
+      </div>
+      <div class="stat-card">
+        <div id="stat-prs" class="stat-value text-blue">0</div>
+        <div class="stat-label">PRs Created</div>
+      </div>
+    </div>
+
+    <div class="main-grid">
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span class="pulse-dot"></span>
+            Live Agent Feed
+          </div>
+        </div>
+        <div id="event-feed" class="event-feed">
+          <div class="empty-state">
+            <div class="empty-icon">🤖</div>
+            <p>Waiting for events...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Analysis Results</div>
+          <div id="results-count" class="badge">0 files</div>
+        </div>
+        <div id="results-list" class="results-list">
+          <div class="empty-state">
+            <div class="empty-icon">🔍</div>
+            <p>No issues detected yet</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="fix-toast" class="fix-toast hidden">
+    <div class="toast-icon">🚀</div>
+    <div class="toast-body">
+      <div class="toast-title">Fix PR Created!</div>
+      <a id="toast-link" href="#" target="_blank" class="toast-link">View Pull Request</a>
+    </div>
+    <button class="toast-close" onclick="hideToast()">✕</button>
+  </div>
+
+  <script src="app.js?v=5"></script>
+</body>
+
+</html>
