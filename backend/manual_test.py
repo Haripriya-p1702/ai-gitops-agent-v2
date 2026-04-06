@@ -60,7 +60,8 @@ spec:
         
         # Step 2: Push to GitHub and Create PR
         print(f"🚀 Pushing fix to GitHub and opening Pull Request...")
-        pr_url = await create_fix_pr(REPO_NAME, BASE_BRANCH, file_info, fix)
+        pr_list = [{"file_info": file_info, "fix": fix}]
+        pr_url = await create_fix_pr(REPO_NAME, BASE_BRANCH, pr_list)
         
         if pr_url:
             print("\n" + "="*50)

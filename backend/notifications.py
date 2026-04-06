@@ -29,7 +29,9 @@ async def send_slack_notification(message: str, pr_url: str = None, color: str =
     payload = {"attachments": [attachment]}
 
     try:
+        print(f"[Slack] Sending notification to webbook: {webhook_url[:20]}...")
         async with httpx.AsyncClient() as client:
-            await client.post(webhook_url, json=payload)
+            resp = await client.post(webhook_url, json=payload)
+            print(f"[Slack] Notification status: {resp.status_code}")
     except Exception as e:
         print(f"[Slack] Notification failed: {e}")

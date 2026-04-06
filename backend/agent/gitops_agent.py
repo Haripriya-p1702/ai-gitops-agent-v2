@@ -22,10 +22,11 @@ def _get_llm():
         )
     else:
         from langchain_google_genai import ChatGoogleGenerativeAI
+        api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
         return ChatGoogleGenerativeAI(
-            model="gemini-1.5-pro",
+            model="gemini-flash-latest",
             temperature=0,
-            google_api_key=os.getenv("GEMINI_API_KEY"),
+            google_api_key=api_key,
         )
 
 

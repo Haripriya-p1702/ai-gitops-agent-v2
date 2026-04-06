@@ -20,6 +20,7 @@ async def create_fix_pr(
         import time
         import uuid
 
+        print(f"[GitHub API] Initializing for repo: {repo_name} with token: {token[:4]}***{token[-4:] if len(token) > 8 else ''}")
         g = Github(token)
         repo = g.get_repo(repo_name)
 

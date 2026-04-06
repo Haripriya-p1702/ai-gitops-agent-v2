@@ -32,12 +32,12 @@ def _get_llm() -> Optional[BaseChatModel]:
     try:
         if provider == "gemini":
             from langchain_google_genai import ChatGoogleGenerativeAI
-            api_key = os.getenv("GOOGLE_API_KEY")
+            api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
             if not api_key:
                 print("[Agent] GOOGLE_API_KEY missing.")
                 return None
             return ChatGoogleGenerativeAI(
-                model="gemini-1.5-pro",
+                model="gemini-flash-latest",
                 api_key=api_key,
                 temperature=0.1,
             )
